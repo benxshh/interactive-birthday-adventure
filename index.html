@@ -1,0 +1,1169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puchku's World ♡</title>
+<meta name="theme-color" content="#17152e">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg: #17152e;
+  --panel: #242144;
+  --purple: #a99bff;
+  --pink: #ffb8df;
+  --white: #fff8ff;
+  --muted: #c9c2e8;
+  --gold: #ffe58a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 50% 0%, #393064 0%, transparent 60%),
+    var(--bg);
+  font-family: "Nunito", sans-serif;
+  overflow-x: hidden;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.pixel {
+  font-family: "Press Start 2P", monospace;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+#stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.sky-star {
+  position: absolute;
+  color: white;
+  opacity: .7;
+  animation: twinkle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .25; transform: scale(.8); }
+  to { opacity: .9; transform: scale(1.2); }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  width: min(900px, 100%);
+  margin: auto;
+  padding: 24px 18px 50px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.pill {
+  border: 1px solid #5d528d;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: #211d40;
+}
+
+.panel {
+  background: rgba(36, 33, 68, .92);
+  border: 2px solid #514779;
+  border-radius: 18px;
+  padding: clamp(20px, 5vw, 38px);
+  box-shadow: 0 10px 0 #100f24;
+}
+
+.center { text-align: center; }
+
+h1, h2, h3 { line-height: 1.5; }
+
+h1 { font-size: clamp(1.25rem, 4.5vw, 2rem); }
+h2 { font-size: clamp(1rem, 3vw, 1.35rem); }
+h3 { margin-top: 0; }
+
+p {
+  line-height: 1.85;
+  color: var(--muted);
+}
+
+.moon {
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  margin: 12px 0;
+  filter: drop-shadow(0 0 22px #a99bff66);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-9px); }
+}
+
+.primary, .secondary {
+  display: inline-block;
+  border: 0;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-weight: 800;
+  transition: transform .15s, filter .15s;
+}
+
+.primary {
+  color: #241936;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  box-shadow: 0 5px 0 #65548e;
+}
+
+.secondary {
+  color: var(--white);
+  background: #39325f;
+  border: 1px solid #7668ac;
+}
+
+.primary:hover, .secondary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.small { font-size: .88rem; }
+.muted { color: var(--muted); }
+
+.hidden { display: none !important; }
+
+.section-heading {
+  margin: 0 0 8px;
+}
+
+.world-banner {
+  text-align: center;
+  padding: 20px 8px 28px;
+}
+
+.world-art {
+  font-size: clamp(2rem, 7vw, 4rem);
+  margin: 10px 0 18px;
+  letter-spacing: 5px;
+}
+
+.progress-wrap {
+  margin: 20px 0 28px;
+  padding: 14px;
+  background: #19172f;
+  border: 1px solid #514779;
+  border-radius: 12px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: .8rem;
+  margin-bottom: 10px;
+}
+
+.progress-track {
+  height: 10px;
+  border-radius: 99px;
+  background: #41395f;
+  overflow: hidden;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  transition: width .3s;
+}
+
+.locations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.location {
+  text-align: left;
+  min-height: 165px;
+  border: 2px solid #514779;
+  background: #211e3e;
+  border-radius: 15px;
+  color: var(--white);
+  padding: 18px;
+  transition: transform .18s, border-color .18s;
+}
+
+.location:hover {
+  transform: translateY(-4px);
+  border-color: var(--pink);
+}
+
+.location .emoji {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.location strong { display: block; margin-bottom: 7px; }
+.location small { color: var(--muted); line-height: 1.6; }
+
+.collected {
+  border-color: #b8abff;
+  background: #302955;
+}
+
+.collect-label {
+  display: block;
+  margin-top: 10px;
+  color: var(--gold);
+  font-size: .75rem;
+}
+
+.notice {
+  padding: 13px 15px;
+  margin: 18px 0 0;
+  border-radius: 12px;
+  background: #1b1935;
+  border: 1px dashed #64588e;
+  font-size: .9rem;
+}
+
+.dictionary {
+  display: grid;
+  gap: 12px;
+}
+
+.word {
+  border: 1px solid #62568e;
+  border-radius: 12px;
+  background: #201d3b;
+  padding: 15px;
+}
+
+.word strong { color: var(--pink); }
+.word p { margin: 7px 0 0; }
+
+.letter {
+  background: #f7efff;
+  color: #393052;
+  padding: clamp(20px, 5vw, 36px);
+  border-radius: 10px;
+  border: 3px dashed #b09cda;
+  box-shadow: 0 8px 0 #100f24;
+}
+
+.letter p { color: #504567; }
+.letter h2 { color: #59447b; }
+.signature { color: #7753a0 !important; font-weight: 800; }
+
+footer {
+  text-align: center;
+  margin-top: 35px;
+  color: #a9a1ca;
+  font-size: .8rem;
+}
+
+#toast {
+  position: fixed;
+  z-index: 10;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  padding: 12px 18px;
+  border: 1px solid #7768a9;
+  border-radius: 12px;
+  background: #292348;
+  box-shadow: 0 5px 20px #0005;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  main { padding: 18px 13px 35px; }
+  .locations { grid-template-columns: 1fr; }
+  .location { min-height: 125px; }
+  .topbar { font-size: .7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* Clickable Puchku Dictionary entries */
+button.word.dictionary-entry {
+  display: block;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(190, 160, 255, 0.35);
+  padding: 14px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+button.word.dictionary-entry > strong,
+button.word.dictionary-entry > small {
+  display: block;
+}
+
+button.word.dictionary-entry > small {
+  margin-top: 7px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+button.word.dictionary-entry .word-meaning {
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+button.word.dictionary-entry:hover {
+  border-color: #c9a7ff;
+  transform: translateY(-2px);
+}
+
+button.word.dictionary-entry:focus-visible {
+  outline: 2px solid #c9a7ff;
+  outline-offset: 3px;
+}
+
+
+/* Secret room gentle reveal animation */
+#secret-reveal:not(.hidden) {
+  animation: secretFadeIn 1.4s ease-out both;
+}
+
+@keyframes secretFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Magical secret room sparkles */
+#secret-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+#secret-reveal .magic-sparkle {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  animation: sparkleFloat 2.8s ease-out forwards;
+}
+
+#secret-reveal .shooting-star {
+  position: absolute;
+  top: 12%;
+  left: -15%;
+  pointer-events: none;
+  z-index: 3;
+  animation: shootingStar 1.5s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.5);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-55px) scale(1.2);
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(-20deg);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(340px, 100px) rotate(-20deg);
+  }
+}
+
+
+/* Final birthday surprise */
+#final-surprise:not(.hidden) {
+  animation: secretFadeIn 1.2s ease-out both;
+}
+
+.birthday-cake {
+  margin: 25px auto;
+  animation: cakeBounce 2s ease-in-out infinite;
+}
+
+.cake-candles {
+  font-size: 25px;
+  letter-spacing: 8px;
+  margin-bottom: 5px;
+  animation: candleGlow 1.2s ease-in-out infinite alternate;
+}
+
+.cake-top {
+  font-size: 75px;
+  line-height: 1.3;
+}
+
+.cake-sparkles {
+  font-size: 23px;
+  margin-top: 8px;
+  animation: sparklePulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cakeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes candleGlow {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+@keyframes sparklePulse {
+  from { opacity: 0.6; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+
+
+</style>
+</head>
+<body>
+<div id="stars-bg" aria-hidden="true"></div>
+
+<main>
+  <div class="topbar">
+    <span>♡ MADE FOR PUCHKU</span>
+    <span class="pill">PLAYER 001</span>
+  </div>
+
+  <!-- INTRO SCREEN -->
+  <section id="intro" class="panel center">
+    <div class="moon" aria-hidden="true">☾</div>
+    <p class="pixel small">A VERY SMALL BIRTHDAY GAME</p>
+    <h1 class="pixel">PUCHKU'S<br>WORLD</h1>
+    <p>
+      A tiny world for a tiny menace.<br>
+      No crowds. No quests involving homework.<br>
+      Just a little something made for you. ♡
+    </p>
+    <div class="world-art" aria-hidden="true">🌙 ✦ 🏡 ✦ 🎵</div>
+    <button class="primary" id="start-btn">▶ START GAME</button>
+    <p class="small">Best experienced at your own pace.</p>
+  </section>
+
+  <!-- MAIN GAME -->
+  <section id="world" class="hidden">
+    <div class="world-banner">
+      <div class="world-art" aria-hidden="true">☁️ ✦ 🌙 ✦ ☁️</div>
+      <h1 class="pixel">WELCOME, PUCHKU</h1>
+      <p>This little world has a few things hidden in it.<br>
+      Explore the places below and collect three stars.</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <strong>YOUR LITTLE QUEST</strong>
+        <span id="star-count">0 / 3 stars</span>
+      </div>
+      <div class="progress-track" role="progressbar"
+           aria-label="Stars collected" aria-valuemin="0"
+           aria-valuemax="3" aria-valuenow="0" id="progress">
+        <div id="progress-bar"></div>
+      </div>
+    </div>
+
+    <h2 class="section-heading">Choose your destination</h2>
+    <p class="small">Each memory holds a star. Click to explore.</p>
+
+    <div class="locations">
+      <button class="location" data-memory="0">
+        <span class="emoji" aria-hidden="true">💬</span>
+        <strong>The Random GC</strong>
+        <small>Where the chaos began…</small>
+        <span class="collect-label" id="label-0">★ Star hidden</span>
+      </button>
+
+      <button class="location" data-memory="1">
+        <span class="emoji" aria-hidden="true">🖼️</span>
+        <strong>The Face Reveal Incident</strong>
+        <small>A totally trustworthy origin story.</small>
+        <span class="collect-label" id="label-1">★ Star hidden</span>
+      </button>
+
+      <button class="location" data-memory="2">
+        <span class="emoji" aria-hidden="true">🌙</span>
+        <strong>The Late-Night Save Point</strong>
+        <small>One more message… and then another.</small>
+        <span class="collect-label" id="label-2">★ Star hidden</span>
+      </button>
+
+      <button class="location" id="jokes-btn">
+        <span class="emoji" aria-hidden="true">📖</span>
+        <strong>The Puchku Dictionary</strong>
+        <small>Important words. Questionable meanings.</small>
+      </button>
+    </div>
+
+    <section id="final-area" class="panel center hidden"
+             style="margin-top:25px">
+      <div class="moon" aria-hidden="true">🎁</div>
+      <p class="pixel small">QUEST COMPLETE</p>
+      <h2 class="pixel">YOU DID IT!</h2>
+      <p>You found all three stars, Puchku.</p>
+      <button class="primary" id="open-letter">UNLOCK YOUR LETTER ♡</button>
+    </section>
+  </section>
+
+  
+  <!-- DICTIONARY -->
+  <section id="dictionary" class="panel hidden" style="margin-top:20px">
+    <p class="pixel small">BONUS LEVEL</p>
+    <h2 class="pixel">THE PUCHKU DICTIONARY</h2>
+    <p>A completely legitimate source. Definitely peer-reviewed.</p>
+
+    <p class="pixel small" style="margin-top:24px">📖 THE OFFICIAL ENTRY</p>
+
+    <div class="dictionary">
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>Aeveveve ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          A mysterious sound only Puchku can produce.
+          The meaning changes according to absolutely nothing.
+        </p>
+      </button>
+    </div>
+
+    <p class="pixel small" style="margin-top:28px">
+      💬 PUCHKU-ISMS
+    </p>
+    <p class="small">Random words. Very serious meanings.</p>
+
+    <div class="dictionary">
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>Hawnnnnn ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          <em>Meaning: YES</em><br>
+          The Puchku-certified way of saying yes.
+          Regular "yes" is apparently too mainstream.
+        </p>
+      </button>
+
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>Kyaawwwww ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          <em>Meaning: WHAT?</em><br>
+          Used when she needs to ask what.
+          The extra letters are absolutely essential.
+        </p>
+      </button>
+
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>So zao ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          <em>Meaning: GO TO SLEEP</em><br>
+          A classic Puchku instruction.
+          Whether anyone actually sleeps is another story.
+        </p>
+      </button>
+
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>Chiyomu ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          <em>Meaning: DUMB PERSON</em><br>
+          A special word for calling one particular person dumb.
+          Said person may or may not deserve it. 💀
+        </p>
+      </button>
+
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>Chuzi ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          A highly unserious individual who cannot be trusted
+          to behave normally for five consecutive minutes.
+        </p>
+      </button>
+
+      <button class="word dictionary-entry" type="button"
+              aria-expanded="false">
+        <strong>Puchku ✦</strong>
+        <small>CLICK TO DECODE ↓</small>
+        <p class="word-meaning hidden">
+          A very important person. May cause excessive nonsense
+          and random late-night conversations.
+        </p>
+      </button>
+    </div>
+
+    <p style="text-align:center">
+      <button class="secondary" id="back-btn">
+        ← BACK TO WORLD
+      </button>
+    </p>
+  </section>
+
+  
+<!-- MAKE A WISH -->
+<section id="wish-room" class="panel center hidden" style="margin-top:20px">
+  <div class="moon" aria-hidden="true">🌠</div>
+  <p class="pixel small">A LITTLE BIT OF MAGIC</p>
+  <h2 class="pixel">MAKE A WISH ✨</h2>
+  <p>What's one thing you wish for in your next year, Puchku?</p>
+
+  <form id="wish-form">
+    <input
+      type="text"
+      id="wish-input"
+      placeholder="Type your wish here..."
+      maxlength="150"
+      required
+      style="width:100%; max-width:400px; padding:12px; border-radius:10px; margin:10px 0;"
+    >
+    <br>
+    <button class="primary" type="submit">SEND IT TO THE STARS ✨</button>
+  </form>
+
+  <div id="wish-result" class="hidden" style="margin-top:18px">
+    <div class="moon" aria-hidden="true">🌟</div>
+    <h3 class="pixel">WISH RECEIVED!</h3>
+    <p id="wish-message"></p>
+    <p class="small">May your next chapter bring you beautiful things. ♡</p>
+    <button type="button" class="secondary" id="wish-again">
+      MAKE ANOTHER WISH ↻
+    </button>
+  </div>
+</section>
+
+<!-- SECRET ROOM -->
+<section id="secret-room" class="panel center hidden" style="margin-top:20px">
+  <div class="moon" aria-hidden="true">🔐</div>
+  <p class="pixel small">HIDDEN BONUS LEVEL</p>
+  <h2 class="pixel">THE SECRET ROOM</h2>
+  <p>There's a little secret waiting for you... ♡</p>
+  <p>Hint: It's the very first name I knew you by. 🌙</p>
+  <form id="secret-form">
+    <input
+      type="password"
+      id="secret-input"
+      placeholder="Enter the secret password..."
+      maxlength="40"
+      required
+      style="width:100%; max-width:320px; padding:12px; border-radius:10px; margin:10px 0;"
+    >
+    <br>
+    <button class="primary" type="submit">UNLOCK SECRET ♡</button>
+  </form>
+
+  <p id="secret-error" class="small hidden" style="margin-top:12px">
+    Nopeee 😭 Wrong password. Try remembering our legendary vocabulary.
+  </p>
+
+  <div id="secret-reveal" class="hidden" style="margin-top:20px">
+    <div class="moon" aria-hidden="true">💜</div>
+    <p class="pixel">SECRET UNLOCKED!</p>
+    <h3 class="pixel">CONGRATULATIONS, PUCHKU</h3>
+   
+<p>If you've made it this far, then here's something I wanted you to know. ♡</p>
+
+<p>You might not even realise it, but you're genuinely such a special person to me. There's something about your presence that makes even the most ordinary moments feel a little more beautiful.</p>
+
+<p>Somehow, you bring warmth to conversations, comfort to quiet nights, and a kind of happiness that stays even after the conversation ends. It's like the world gets a little brighter just because you're in it. 🌙✨</p>
+
+<p>I'm really glad I got to know you, Amy. From that first name I knew you by to the Puchku I know today, I'm grateful for all the little memories, the nonsense, the laughs, and the moments that became ours.</p>
+
+<p>I hope life gives you a thousand reasons to smile, that you always find people who appreciate the person you are, and that you never forget how much light you bring into the lives around you. You deserve so many beautiful things. 💜</p>
+
+<p>And don't let this message get to your head, chuzi. 🙄♡</p>
+
+  </div>
+</section>
+
+<!-- TINY FRIENDSHIP SURPRISE -->
+<section id="random-room" class="panel center hidden" style="margin-top:20px">
+  <p class="pixel small">RANDOM EVENT</p>
+  <h2 class="pixel">PUCHKU GENERATOR 🎲</h2>
+  <p id="random-message">Press the button to discover your totally official title.</p>
+  <button class="secondary" id="random-btn" type="button">
+    GENERATE MY TITLE 🎲
+  </button>
+</section>
+
+
+<!-- FINAL BIRTHDAY SURPRISE -->
+<section id="final-surprise" class="panel center hidden" style="margin-top:20px">
+  <div class="moon" aria-hidden="true">🌙</div>
+  <p class="pixel small">THE FINAL SECRET</p>
+  <h2 class="pixel">ONE LAST THING... ♡</h2>
+  <p>You thought the adventure was over, Puchku? Not quite. ✨</p>
+
+  <button class="primary" id="last-surprise-btn" type="button">
+    OPEN YOUR FINAL GIFT 🎁
+  </button>
+
+  <div id="birthday-ending" class="hidden" style="margin-top:25px">
+    <div class="birthday-cake" aria-label="Birthday cake">
+      <div class="cake-candles">🕯️ 🕯️ 🕯️</div>
+      <div class="cake-top">🎂</div>
+      <div class="cake-sparkles">✨ 💜 ✨</div>
+    </div>
+
+    <h2 class="pixel">HAPPY BIRTHDAY, AMY ♡</h2>
+
+    <p>Make a wish, close your eyes, and remember that there's so much goodness waiting for you in this world.</p>
+
+    <p>I hope your days are filled with little reasons to smile, people who understand you, dreams that come true, and moments you wish you could pause forever.</p>
+
+    <p>And whenever life feels a little dull, I hope you remember that your presence makes this world brighter just by being part of it. Never stop being you. 💜</p>
+
+    <p class="pixel small">QUEST COMPLETE · YOU ARE LOVED ♡</p>
+  </div>
+</section>
+
+
+  <!-- FINAL LETTER -->
+  <section id="letter-screen" class="hidden" style="margin-top:20px">
+    <div class="letter">
+      <p class="pixel small">A LITTLE NOTE FOR YOU</p>
+      <h2 class="pixel">HAPPY BIRTHDAY, PUCHKU ♡</h2>
+
+<div class="birthday-music">
+ 
+
+<div class="birthday-music">
+ 
+  <iframe
+    width="100%"
+    height="180"
+    src="https://www.youtube.com/embed/KKQl-pIRQMY"
+    title="Photograph — Ed Sheeran"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="encrypted-media; picture-in-picture; web-share"
+    allowfullscreen
+    style="border:0; border-radius:12px;">
+  </iframe>
+</div>
+
+
+
+</div>
+
+      <p>aeveveveeeee ka bdayyyyyy 😭</p>
+
+      <p>Happy birthday, chuziiiiii. Congratulations on surviving
+      another year of being you. Genuinely impressive, honestly.</p>
+
+      <p>It's kinda funny to think that we met in some random GC
+      and started talking for absolutely no particular reason.
+      Then came the legendary face reveal incident (which I would
+      like to remind you was a questionable decision on my part 💀),
+      and somehow, here we are, almost 10 months later.</p>
+
+      <p>From our random nonsense to those late-night Snapchat
+      conversations where we would keep talking until one of us
+      literally fell asleep, there are so many little moments
+      that have made this friendship special to me.</p>
+
+      <p>And of course, how could I forget the legendary aeveveve.
+      I still don't know what that word is supposed to mean, but
+      at this point, I don't think I want to know.</p>
+
+      <p>Jokes aside, I'm genuinely glad we met, Shreya.
+      You're someone I've gotten to know in a way I never expected
+      when I first messaged you. I'm glad we've been able to share
+      random thoughts, laugh at stupid things, and just talk about
+      whatever comes to mind. So Thank You Miss Audichya for being 
+      an amazing part of my life.</p>
+
+      <p>I hope this next year brings you lots of happiness,
+      peaceful days, good music, fun Roblox sessions, and plenty
+      of reasons to smile. I hope you get through the difficult
+      days too, and that life is a little kinder to you. And yes
+      I hope aap college ka gulla thoda kam maaro ab TwT.</p>
+
+      <p>Anyway, I'm not going to make this any more emotional
+      because you'll probably call me chuza and ruin the moment. 🙏</p>
+
+      <p>I just wanted to make you something a little different
+      for your birthday. So here's your own tiny corner of the
+      internet, made with a little bit of code and a lot of
+      questionable dedication.</p>
+
+      <p>Have the happiest birthday, Puchku. Take care of yourself,
+      keep being your weird little self, and never stop doing aeveveve.</p>
+
+      <p class="signature">— your certified chuza ♡</p>
+    </div>
+    <p class="center">
+      <button class="secondary" id="replay-btn">↻ REPLAY MY LITTLE WORLD</button>
+    </p>
+  </section>
+
+  <footer>
+    made with questionable coding skills & lots of care ♡<br>
+    <span class="small">A tiny world, just for you.</span>
+  </footer>
+</main>
+
+<div id="toast" class="hidden" role="status" aria-live="polite"></div>
+
+<script>
+
+const memories = [
+  {
+    title: "The Random GC 💬",
+    text: `Imagine meeting someone in some random group chat and somehow turning that into a whole friendship. We literally started talking for no particular reason. Funny how the most random things sometimes become the best stories.`
+  },
+  {
+    title: "The Face Reveal Incident 🖼️",
+    text: `You asked to see my face, and I sent someone else's picture. 💀 I am not sure what kind of first impression I was trying to make, but apparently we kept talking anyway. An absolutely questionable beginning to a surprisingly good friendship.`
+  },
+  {
+    title: "The Late-Night Save Point 🌙",
+    text: `When you added me on Snap. Those late-night Snapchat conversations where one more message somehow turned into another hour of talking. And that one night when you actually fell asleep while we were talking. A tiny, random memory, but one that has stayed with me.`
+  }
+];
+
+const $ = id => document.getElementById(id);
+const intro = $("intro");
+const world = $("world");
+const dictionary = $("dictionary");
+const letterScreen = $("letter-screen");
+const collected = new Set();
+let toastTimer;
+
+function showToast(message) {
+  const toast = $("toast");
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.add("hidden"), 2400);
+}
+
+function makeStars() {
+  const container = $("stars-bg");
+  for (let i = 0; i < 55; i++) {
+    const star = document.createElement("span");
+    star.className = "sky-star";
+    star.textContent = i % 7 === 0 ? "✦" : "·";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.fontSize = (8 + Math.random() * 12) + "px";
+    star.style.animationDelay = (Math.random() * 3) + "s";
+    container.appendChild(star);
+  }
+}
+
+function showOnly(screen) {
+  [intro, world, dictionary, letterScreen].forEach(section => {
+    section.classList.add("hidden");
+  });
+  screen.classList.remove("hidden");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openMemory(index) {
+  const memory = memories[index];
+  const alreadyCollected = collected.has(index);
+
+  // Use textContent so the message is displayed as plain text.
+  const dialog = document.createElement("dialog");
+  dialog.style.cssText = `
+    max-width: 430px; width: calc(100% - 32px);
+    border: 2px solid #7668ac; border-radius: 18px;
+    background: #242144; color: #fff8ff;
+    padding: 26px; box-shadow: 0 15px 60px #0009;
+    font-family: Nunito, sans-serif;
+  `;
+
+  const title = document.createElement("h2");
+  title.textContent = memory.title;
+  const text = document.createElement("p");
+  text.style.cssText = "line-height:1.85;color:#c9c2e8;white-space:pre-line";
+  text.textContent = memory.text;
+  const reward = document.createElement("p");
+  reward.style.color = "#ffe58a";
+  reward.textContent = alreadyCollected
+    ? "★ You've already collected this star!"
+    : "★ You found a star!";
+  const close = document.createElement("button");
+  close.className = "primary";
+  close.textContent = alreadyCollected ? "BACK TO WORLD" : "COLLECT STAR ★";
+
+  close.addEventListener("click", () => {
+    if (!collected.has(index)) {
+      collected.add(index);
+      updateProgress();
+      showToast("Star collected! ★");
+    }
+    dialog.close();
+  });
+
+  dialog.append(title, text, reward, close);
+  document.body.appendChild(dialog);
+  dialog.addEventListener("close", () => dialog.remove());
+  dialog.addEventListener("click", event => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.showModal();
+}
+
+function updateProgress() {
+  const count = collected.size;
+  $("star-count").textContent = count + " / 3 stars";
+  $("progress-bar").style.width = (count / 3 * 100) + "%";
+  $("progress").setAttribute("aria-valuenow", count);
+
+  for (let i = 0; i < 3; i++) {
+    const button = document.querySelector('[data-memory="' + i + '"]');
+    const label = $("label-" + i);
+    if (collected.has(i)) {
+      button.classList.add("collected");
+      label.textContent = "★ Star collected!";
+    }
+  }
+
+  if (count === 3) {
+    $("final-area").classList.remove("hidden");
+  }
+}
+
+$("start-btn").addEventListener("click", () => showOnly(world));
+
+document.querySelectorAll("[data-memory]").forEach(button => {
+  button.addEventListener("click", () => {
+    openMemory(Number(button.dataset.memory));
+  });
+});
+
+$("jokes-btn").addEventListener("click", () => {
+  showOnly(dictionary);
+});
+
+$("back-btn").addEventListener("click", () => showOnly(world));
+
+$("open-letter").addEventListener("click", () => {
+  if (collected.size === 3) showOnly(letterScreen);
+});
+
+$("replay-btn").addEventListener("click", () => {
+  collected.clear();
+  updateProgress();
+  $("final-area").classList.add("hidden");
+  document.querySelectorAll(".location").forEach(button => {
+    button.classList.remove("collected");
+  });
+  for (let i = 0; i < 3; i++) {
+    $("label-" + i).textContent = "★ Star hidden";
+  }
+  showOnly(intro);
+});
+
+// Optional: replace this with a link to her favourite song.
+// Example: $("music-link").href = "https://www.youtube.com/watch?v=...";
+makeStars();
+
+
+document.querySelectorAll(".dictionary-entry").forEach((entry) => {
+  entry.addEventListener("click", () => {
+    const meaning = entry.querySelector(".word-meaning");
+    const isOpen = !meaning.classList.contains("hidden");
+
+    meaning.classList.toggle("hidden");
+    entry.setAttribute("aria-expanded", String(!isOpen));
+
+    const label = entry.querySelector("small");
+    if (label) {
+      label.textContent = isOpen
+        ? "CLICK TO DECODE ↓"
+        : "SECRET UNLOCKED ↑";
+    }
+  });
+});
+
+
+/* MAKE A WISH */
+const wishForm = document.getElementById("wish-form");
+const wishInput = document.getElementById("wish-input");
+const wishResult = document.getElementById("wish-result");
+const wishMessage = document.getElementById("wish-message");
+const wishAgain = document.getElementById("wish-again");
+
+wishForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const wish = wishInput.value.trim();
+  if (!wish) return;
+
+  wishMessage.textContent =
+    "Your wish is safe on this screen: “" + wish + "” ✨";
+
+  wishResult.classList.remove("hidden");
+  wishForm.classList.add("hidden");
+});
+
+wishAgain.addEventListener("click", function () {
+  wishInput.value = "";
+  wishResult.classList.add("hidden");
+  wishForm.classList.remove("hidden");
+  wishInput.focus();
+});
+
+/* SECRET ROOM */
+const secretForm = document.getElementById("secret-form");
+const secretInput = document.getElementById("secret-input");
+const secretError = document.getElementById("secret-error");
+const secretReveal = document.getElementById("secret-reveal");
+
+secretForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const password = secretInput.value.trim().toLowerCase();
+
+  if (password === "amy") {
+    secretReveal.classList.remove("hidden");
+    
+const sparkleSymbols = ["✦", "✧", "✨", "💜", "⋆"];
+
+for (let i = 0; i < 12; i++) {
+  const sparkle = document.createElement("span");
+  sparkle.className = "magic-sparkle";
+  sparkle.textContent =
+    sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
+
+  sparkle.style.left = Math.random() * 90 + "%";
+  sparkle.style.top = 35 + Math.random() * 55 + "%";
+  sparkle.style.animationDelay = Math.random() * 1.2 + "s";
+
+  secretReveal.appendChild(sparkle);
+
+  sparkle.addEventListener("animationend", function () {
+    sparkle.remove();
+  });
+}
+
+const star = document.createElement("span");
+star.className = "shooting-star";
+star.textContent = "🌠";
+secretReveal.appendChild(star);
+
+star.addEventListener("animationend", function () {
+  star.remove();
+});
+
+    secretError.classList.add("hidden");
+    secretForm.classList.add("hidden");
+    secretInput.value = "";
+  } else {
+    secretError.classList.remove("hidden");
+  }
+});
+
+/* RANDOM FRIENDSHIP SURPRISE */
+const randomMessages = [
+  "Professional Cliche Responder 🏆",
+  "Certified Late-Night Yapper & Gamer 🌙",
+  "CEO of Aeveveve 👑",
+  "Official Roblox Main Character 🎮",
+  "Music-Lover Bhindi 🌀",
+  "Puchku: Rare Edition 💜"
+];
+
+const randomButton = document.getElementById("random-btn");
+const randomMessage = document.getElementById("random-message");
+
+randomButton.addEventListener("click", function () {
+  const choice = Math.floor(Math.random() * randomMessages.length);
+  randomMessage.textContent = randomMessages[choice];
+});
+
+
+/* GRADUAL BONUS UNLOCKS */
+
+document.getElementById("open-letter").addEventListener("click", function () {
+  document.getElementById("wish-room").classList.remove("hidden");
+});
+
+document.getElementById("wish-form").addEventListener("submit", function () {
+  document.getElementById("secret-room").classList.remove("hidden");
+});
+
+document.getElementById("secret-form").addEventListener("submit", function () {
+  if (!document.getElementById("secret-reveal").classList.contains("hidden")) {
+    document.getElementById("random-room").classList.remove("hidden");
+    document.getElementById("final-surprise").classList.remove("hidden");
+  }
+});
+
+
+document.getElementById("last-surprise-btn").addEventListener("click", function () {
+  document.getElementById("birthday-ending").classList.remove("hidden");
+  this.classList.add("hidden");
+});
+
+
+</script>
+</body>
+</html>
